@@ -1,3 +1,17 @@
-<p>
-  dinners works!
-</p>
+<div class="ui-g ui-fluid">
+  <!-- <div class="ui-g-2">
+    Noties?
+  </div> -->
+  <div class="ui-g-12">
+    <div class="week-picker">
+      Choose Date:
+      <p-calendar [(ngModel)]="weekPickerDate" (ngModelChange)="onWeekPickerDateChange()" showIcon="true" dateFormat="mm/dd/yy"
+        [style]="{'width': '150px'}"></p-calendar>
+    </div>
+    <div class="week-display">
+      <div *ngFor="let dayOfWeek of week">
+        <dd-week-day [date]="dayOfWeek"></dd-week-day>
+      </div>
+    </div>
+  </div>
+</div>

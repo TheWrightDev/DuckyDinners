@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+
+    @media (min-width: 1025px) {
+        .layout-container.menu-layout-horizontal .layout-main {
+            padding-top: 96px;
+        }
+    }
+
+    .dd-logo {
+        font-family: 'Pompiere', cursive;
+        font-weight: 100;
+        margin: 0; 
+        font-size: 2.5em;
+    }
+}
