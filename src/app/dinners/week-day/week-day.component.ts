@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 
 @Component({
@@ -11,6 +11,8 @@ export class WeekDayComponent implements OnInit, OnChanges {
   @Input() date: Date;
 
   public dayOfWeek: string;
+  public isMealSaved: boolean = true;
+  public isEmpty: boolean = true;
 
   constructor() { }
 

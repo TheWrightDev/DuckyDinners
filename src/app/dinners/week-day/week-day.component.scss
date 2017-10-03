@@ -2,4 +2,26 @@
     .ui-panel-content {
         font-size: 16px;
     }
+
+    .unsaved {
+        color: red;
+    }
+
+    .empty {
+        background-color: #f7f7f7;
+        opacity: .8;
+
+        .day-header h1 {
+            font-weight: normal;
+        }
+    }
+
+    .day-header {
+        font-family: 'Lato', sans-serif;
+        display: flex;
+        flex-direction: column;
+        h1 {
+            font-weight: bolder;
+        }
+    }
 }

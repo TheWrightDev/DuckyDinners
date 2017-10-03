@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,13 @@ import { LayoutModule } from './core/layout/layout.module';
 import { DuckyNoteModule } from './core/ducky-note/ducky-note.module';
 import { DinnersModule } from './dinners/dinners.module';
 
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/finally';
+import 'rxjs/add/operator/map';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +30,7 @@ import { DinnersModule } from './dinners/dinners.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     LayoutModule,

@@ -1,3 +1,7 @@
-<p-panel header="{{dayOfWeek}} ({{date | date:'MM/dd/yy'}})">
-  <dd-dinner-input></dd-dinner-input>
-</p-panel>
+<div class="card" [class.empty]="isEmpty">
+  <div class="day-header" [class.unsaved]="!isMealSaved">
+      <h1 style="margin-top: 0; margin-bottom: 0; font-size:2em; flex: 1">{{dayOfWeek}}</h1>
+      <h2 style="margin-top: 0; font-weight:500; font-size:.8em; ">{{date | date:'MM/dd/yy'}}</h2>
+  </div>
+  <dd-meal-input [date]="date" [(isSaved)]="isMealSaved" [(isEmpty)]="isEmpty"></dd-meal-input>
+</div>

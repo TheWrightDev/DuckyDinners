@@ -7,8 +7,9 @@ import { AppComponent } from '../../app.component';
         <div class="topbar clearfix">
 
             <div class="topbar-right">
-                <div style="float: left; color: white; margin-top: 10px; font-size: 16px;">
-                    <h1 class="dd-logo">DUCKY DINNERS</h1>
+                <div style="float: left; color: white; margin-top: 10px; font-size: 16px; display: flex;">
+                    <img style="height: 60px; margin-top: -17px;" src="./assets/images/ducky_logo.png">
+                    <h1 style="margin-left: 10px"class="dd-logo">DUCKY DINNERS</h1>
                 </div>
 
                 <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">

@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DuckyNoteService } from './ducky-note.service';
+import { DuckyMealService } from './ducky-meal.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ export class DuckyNoteModule {
       ngModule: DuckyNoteModule,
       providers: [
         DuckyNoteService,
+        DuckyMealService,
       ]
     };
   }

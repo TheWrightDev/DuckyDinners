@@ -1,0 +1,27 @@
+<form [formGroup]="mealForm" novalidate>
+  <div class="ui-g" *ngIf="isLoaded; else loading">
+    <div class="ui-g-12 ui-g-nopad">
+      <span class="type-header">Dinner</span>
+      <input type="text" pInputText formControlName="dinner" style="text-overflow: ellipsis;" placeholder="Enter desired dinner" (keydown.enter)="goToFirstSide()">
+    </div>
+    <div class="ui-g-12 ui-g-nopad" style="margin-top: 10px" formArrayName="sides">
+      <span class="type-header">Sides</span>
+      <ng-container *ngIf="mealForm.controls.sides.controls.length; else noSides">
+        <div *ngFor="let side of mealForm.controls.sides.controls; let i = index;" [formGroupName]="i" style="display: flex; margin-bottom: 5px;">
+          <input #input type="text" pInputText formControlName="side" style="flex: 1; text-overflow: ellipsis;" (keydown.enter)="addSide()">
+          <i class="material-icons clickable-icon" (click)="removeSide(i)">close</i>
+        </div>
+      </ng-container>
+      <ng-template #noSides>
+        <div style="text-align: center; font-size: .9em;">No Sides</div>
+      </ng-template>
+    </div>
+    <div class="ui-g-12 ui-g-nopad" style="margin-top: 15px">
+      <button type="button" pButton label="Add Side" icon="fa-plus" (click)="addSide()" tabindex="-1"></button>
+    </div>
+  </div>
+</form>
+
+<ng-template #loading>
+  <dd-spinner></dd-spinner>
+</ng-template>

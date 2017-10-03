@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DinnersComponent } from './dinners.component';
 import { SharedModule } from '../shared/shared.module';
-import { DinnerInputComponent } from './dinner-input/dinner-input.component';
+import { MealInputComponent } from './meal-input/meal-input.component';
 import { WeekDayComponent } from './week-day/week-day.component';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { WeekDayComponent } from './week-day/week-day.component';
     CommonModule,
     SharedModule,
   ],
-  declarations: [DinnersComponent, DinnerInputComponent, WeekDayComponent],
+  declarations: [DinnersComponent, MealInputComponent, WeekDayComponent],
   exports: [DinnersComponent]
 })
 export class DinnersModule {
