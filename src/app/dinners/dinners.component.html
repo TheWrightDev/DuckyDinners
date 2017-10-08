@@ -1,12 +1,29 @@
+<p-sidebar [(visible)]="isNotesPanelVisible" [baseZIndex]="10000" blockScroll="true">
+  <div style="display: flex; align-items: center;">
+    <img style="height: 60px; margin-top: -17px;" src="./assets/images/ducky_note_logo.png">
+    <h1 style="font-weight:normal; margin-left: 10px;">Notes</h1>
+  </div>
+  <dd-notes></dd-notes>
+</p-sidebar>
+
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
-    <div class="week-picker">
-      Choose Date:
-      <p-calendar [(ngModel)]="weekPickerDate" (ngModelChange)="onWeekPickerDateChange()" showIcon="true" dateFormat="mm/dd/yy"
-        [style]="{'width': '160px'}"></p-calendar>
+    <div style="display: flex; justify-content:center;">
+      <button pButton type="button" (click)="showNotes()" icon="ui-icon-edit" style="margin-right: auto"></button>
+      <div class="week-picker" style="margin-right: auto; display: flex">
+        <i class="material-icons clickable-icon" (click)="previousWeek()">arrow_backward</i>
+        <div>
+          Choose Date:
+          <p-calendar [(ngModel)]="weekPickerDate" (ngModelChange)="onWeekPickerDateChange()" showIcon="true" dateFormat="mm/dd/yy"
+            [style]="{'width': '160px'}"></p-calendar>
+        </div>
+        <i class="material-icons clickable-icon" (click)="nextWeek()">arrow_forward</i>
+      </div>
+      <div style="width: 45px"></div>
     </div>
     <div class="week-date-range-display">
-      <strong>{{mondayDisplayString}}</strong> to <strong>{{sundayDisplayString}}</strong>
+      <strong>{{mondayDisplayString}}</strong> to
+      <strong>{{sundayDisplayString}}</strong>
     </div>
     <div class="week-display">
       <div *ngFor="let dayOfWeek of week" class="week-day">

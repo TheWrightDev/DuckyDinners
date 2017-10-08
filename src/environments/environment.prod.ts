@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseApiUrl: `http://thewrightdev.com/duckyapiv3/`,
 };

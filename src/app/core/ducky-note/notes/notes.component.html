@@ -1,0 +1,20 @@
+<div>
+    <div class="category-selection">
+        <p-selectButton [options]="categories" [(ngModel)]="selectedCategory" (onChange)="onCategoryChanged()">
+        </p-selectButton>
+    </div>
+
+    <div class="note-input" >
+        <div class="ui-inputgroup" style="display: flex">
+            <input #noteInput type="text" pInputText placeholder="New Note..." style="flex: 1" [(ngModel)]="newNoteText" (keydown.enter)="addNote()">
+            <button pButton type="button" label="Add" class="green-btn" (click)="addNote()"></button>
+        </div>
+    </div>
+
+    <div class="note-list">
+        <div *ngFor=" let note of notes" class="ducky-note">
+            <div style="flex: 1">{{note.note}}</div>
+            <button type="button" pButton label="Done" class="cyan-btn" (click)="markComplete(note)"></button>
+        </div>
+    </div>
+</div>

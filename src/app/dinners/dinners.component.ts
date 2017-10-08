@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import * as moment from 'moment';
+
+import { NotesComponent } from '../core/ducky-note/notes/notes.component';
 
 @Component({
   selector: 'dd-dinners',
@@ -16,10 +17,19 @@ export class DinnersComponent implements OnInit {
   public sundayDisplayString: string;
   public week: Date[] = [];
 
+  public isNotesPanelVisible: boolean = false;
+
+  @ViewChild(NotesComponent) private notesComponent: NotesComponent;
+
   constructor() { }
 
   ngOnInit() {
     this.onWeekPickerDateChange();
+  }
+
+  public showNotes() {
+    this.isNotesPanelVisible = true;
+    this.notesComponent.focusInput();
   }
 
   public onWeekPickerDateChange() {
@@ -33,4 +43,13 @@ export class DinnersComponent implements OnInit {
     }
   }
 
+  public previousWeek() {
+    this.weekPickerDate = moment(this.weekPickerDate).subtract(1, 'weeks').toDate();
+    this.onWeekPickerDateChange();
+  }
+
+  public nextWeek() {
+    this.weekPickerDate = moment(this.weekPickerDate).add(1, 'weeks').toDate();
+    this.onWeekPickerDateChange();
+  }
 }
