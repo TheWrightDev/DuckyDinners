@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { DuckyMeal } from '../../core/ducky-note/ducky-meal.model';
 import { DuckyMealService } from '../../core/ducky-note/ducky-meal.service';
+import { FoodInputComponent } from '../../shared/components/food-input/food-input.component';
 
 @Component({
   selector: 'dd-meal-input',
@@ -35,7 +36,7 @@ export class MealInputComponent implements OnInit, OnDestroy {
   private formChangeSubscription: Subscription;
   private saveMealSubscription: Subscription;
 
-  @ViewChildren('input') inputElements: QueryList<ElementRef>;
+  @ViewChildren('side') sideFoodInputComponents: QueryList<FoodInputComponent>;
 
   constructor(private formBuilder: FormBuilder, private duckyMealService: DuckyMealService) { }
 
@@ -99,7 +100,7 @@ export class MealInputComponent implements OnInit, OnDestroy {
   public addSide() {
     this.sidesFormArray.push(this.getSideFormGroup());
     setTimeout(() => {
-      this.inputElements.last.nativeElement.focus();
+      this.sideFoodInputComponents.last.focus();
     });
   }
 
@@ -108,11 +109,15 @@ export class MealInputComponent implements OnInit, OnDestroy {
   }
 
   public goToFirstSide() {
-    if (this.inputElements.length) {
-      this.inputElements.first.nativeElement.focus();
+    if (this.sideFoodInputComponents.length) {
+      this.sideFoodInputComponents.first.focus();
     } else {
       this.addSide();
     }
+  }
+
+  public isLink(text: string) {
+    return text && (text.startsWith('http://') || text.startsWith('https://'));
   }
 
   private setSaved(isSaved: boolean) {

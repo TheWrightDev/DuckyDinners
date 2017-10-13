@@ -1,0 +1,10 @@
+<div>
+<!-- <div [class.contains-link]="isLink">
+  <a class="link-icon" [href]="value" target="_blank">
+    <i class="material-icons clickable-icon">link</i>
+  </a> -->
+  <input #input type="text" pInputText [(ngModel)]="value" style="text-overflow: ellipsis;" [placeholder]="placeholder">
+  <div *ngIf="isLink" class="link-description" style="overflow: hidden">
+    <a [href]="value" target="_blank" style="white-space: nowrap; text-overflow: ellipsis;" [pTooltip]="linkDescription" tooltipStyleClass="link-tooltip"  tooltipPosition="top" showDelay="250">{{linkDescription}}</a>
+  </div>
+</div>

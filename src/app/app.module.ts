@@ -12,6 +12,7 @@ import { LayoutModule } from './core/layout/layout.module';
 
 import { DuckyNoteModule } from './core/ducky-note/ducky-note.module';
 import { DinnersModule } from './dinners/dinners.module';
+import { MetaModule } from './core/meta/meta.module';
 
 import { GrowlModule } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -37,6 +38,7 @@ import 'rxjs/add/operator/map';
     GrowlModule,
     LayoutModule,
     DuckyNoteModule.forRoot(),
+    MetaModule.forRoot(),
     DinnersModule,
   ],
   providers: [MessageService],

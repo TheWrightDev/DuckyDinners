@@ -1,0 +1,32 @@
+:host {
+    overflow: hidden;
+}
+
+.link-icon {
+    display: none;
+}
+
+.contains-link {
+    input {
+        //padding-left: 27px;
+    }
+
+    .link-icon {
+        display: block;
+        position: absolute;
+        left: 0;
+    }
+}
+
+.link-description {
+    line-height: 13px;
+    background-color: transparent;
+    border: 0 none;
+    margin: 0px;
+    color: #646ce4;
+    font-size: 12px;
+}
+
+::ng-deep .link-tooltip {
+    
+}

@@ -9,23 +9,21 @@ import { InputTextModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
 import { SidebarModule } from 'primeng/primeng';
 import { SelectButtonModule } from 'primeng/primeng';
+import { TooltipModule } from 'primeng/primeng';
 
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { FoodInputComponent } from './components/food-input/food-input.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         RouterModule,
-        ButtonModule,
-        CalendarModule,
         InputTextModule,
-        PanelModule,
-        SidebarModule,
-        SelectButtonModule,
+        TooltipModule,
     ],
-    declarations: [SpinnerComponent, SafeUrlPipe],
+    declarations: [SpinnerComponent, SafeUrlPipe, FoodInputComponent],
     exports: [
         CommonModule,
         FormsModule,
@@ -37,8 +35,10 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
         PanelModule,
         SidebarModule,
         SelectButtonModule,
+        TooltipModule,
         SpinnerComponent,
         SafeUrlPipe,
+        FoodInputComponent,
     ]
 })
 export class SharedModule { }

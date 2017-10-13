@@ -1,14 +1,14 @@
 <form [formGroup]="mealForm" novalidate>
   <div class="ui-g" *ngIf="isLoaded; else loading">
-    <div class="ui-g-12 ui-g-nopad">
+    <div class="ui-g-12 ui-g-nopad" style="position: relative;">
       <span class="type-header">Dinner</span>
-      <input type="text" pInputText formControlName="dinner" style="text-overflow: ellipsis;" placeholder="Enter desired dinner" (keydown.enter)="goToFirstSide()">
+      <dd-food-input formControlName="dinner" (keydown.enter)="goToFirstSide()"></dd-food-input>
     </div>
     <div class="ui-g-12 ui-g-nopad" style="margin-top: 10px" formArrayName="sides">
       <span class="type-header">Sides</span>
       <ng-container *ngIf="mealForm.controls.sides.controls.length; else noSides">
-        <div *ngFor="let side of mealForm.controls.sides.controls; let i = index;" [formGroupName]="i" style="display: flex; margin-bottom: 5px;">
-          <input #input type="text" pInputText formControlName="side" style="flex: 1; text-overflow: ellipsis;" (keydown.enter)="addSide()">
+        <div *ngFor="let side of mealForm.controls.sides.controls; let i = index;" [formGroupName]="i" style="display: flex; margin-bottom: 5px; position: relative;">
+          <dd-food-input #side formControlName="side" (keydown.enter)="addSide()" style="flex: 1"></dd-food-input>
           <i class="material-icons clickable-icon" (click)="removeSide(i)">close</i>
         </div>
       </ng-container>
