@@ -1,7 +1,11 @@
 <div class="card" [class.empty]="isEmpty">
   <div class="day-header" [class.unsaved]="!isMealSaved">
+    <div class="day-with-date">
       <h1 style="margin-top: 0; margin-bottom: 0; font-size:2em; flex: 1">{{dayOfWeek}}</h1>
       <h2 style="margin-top: 0; font-weight:500; font-size:.8em; ">{{date | date:'MM/dd/yy'}}</h2>
+    </div>
+    <i class="material-icons clickable-icon" #swap (click)="menu.toggle($event)">swap_horiz</i>
   </div>
   <dd-meal-input [date]="date" [(isSaved)]="isMealSaved" [(isEmpty)]="isEmpty"></dd-meal-input>
 </div>
+<p-menu #menu popup="popup" [model]="swappableDays" appendTo="body"></p-menu>

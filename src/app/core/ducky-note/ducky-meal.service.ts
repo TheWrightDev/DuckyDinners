@@ -13,15 +13,19 @@ export class DuckyMealService {
   constructor(private http: HttpClient) { }
 
   public getMeal(id: Date): Observable<DuckyMeal> {
-    return <Observable<DuckyMeal>>this.http.get(this.baseUrl + '/' + encodeURI(id.toDateString()));
+    return this.http.get<DuckyMeal>(this.baseUrl + '/' + encodeURI(id.toDateString()));
   }
 
-  public saveMeal(duckyMeal: DuckyMeal) {
+  public saveMeal(duckyMeal: DuckyMeal): Observable<DuckyMeal> {
     const test = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return <Observable<DuckyMeal>>this.http.put(
+    return this.http.put<DuckyMeal>(
       this.baseUrl + '/' + encodeURI(duckyMeal.date.toDateString()),
       JSON.stringify(duckyMeal),
       { headers: test }
     );
+  }
+
+  public swapMeal(fromDate: Date, toDate: Date) {
+    return this.http.post(`${this.baseUrl}/${encodeURI(fromDate.toDateString())}/swap/${encodeURI(toDate.toDateString())}`, null);
   }
 }

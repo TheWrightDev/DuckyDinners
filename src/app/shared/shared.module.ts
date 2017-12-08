@@ -5,7 +5,10 @@ import { RouterModule } from '@angular/router';
 
 import { ButtonModule } from 'primeng/primeng';
 import { CalendarModule } from 'primeng/primeng';
+import { ContextMenuModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
 import { InputTextModule } from 'primeng/primeng';
+import { MenuModule } from 'primeng/primeng';
 import { PanelModule } from 'primeng/primeng';
 import { SidebarModule } from 'primeng/primeng';
 import { SelectButtonModule } from 'primeng/primeng';
@@ -31,7 +34,10 @@ import { FoodInputComponent } from './components/food-input/food-input.component
         RouterModule,
         ButtonModule,
         CalendarModule,
+        ContextMenuModule,
+        DialogModule,
         InputTextModule,
+        MenuModule,
         PanelModule,
         SidebarModule,
         SelectButtonModule,

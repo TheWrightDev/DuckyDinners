@@ -1,4 +1,4 @@
-/deep/ body dd-week-day {
+:host ::ng-deep {
     .ui-panel-content {
         font-size: 16px;
     }
@@ -19,9 +19,14 @@
     .day-header {
         font-family: 'Lato', sans-serif;
         display: flex;
-        flex-direction: column;
-        h1 {
-            font-weight: bolder;
+        
+        .day-with-date {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            h1 {
+                font-weight: bolder;
+            }
         }
     }
 }

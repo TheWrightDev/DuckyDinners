@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import * as moment from 'moment';
+import { MessageService } from 'primeng/components/common/messageservice';
 
+import { DuckyMealService } from '../core/ducky-note/ducky-meal.service';
 import { NotesComponent } from '../core/ducky-note/notes/notes.component';
 
 @Component({
@@ -21,7 +23,7 @@ export class DinnersComponent implements OnInit {
 
   @ViewChild(NotesComponent) private notesComponent: NotesComponent;
 
-  constructor() { }
+  constructor(private messageService: MessageService, private duckyMealService: DuckyMealService) { }
 
   ngOnInit() {
     this.onWeekPickerDateChange();
@@ -51,5 +53,18 @@ export class DinnersComponent implements OnInit {
   public nextWeek() {
     this.weekPickerDate = moment(this.weekPickerDate).add(1, 'weeks').toDate();
     this.onWeekPickerDateChange();
+  }
+
+  public swapDay(swapFromDate: Date, swapToDate: Date) {
+    this.duckyMealService.swapMeal(swapFromDate, swapToDate).subscribe(swap => {
+      this.onWeekPickerDateChange();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: `Swapped meals for ${moment(swapFromDate).format('dddd')} and ${moment(swapToDate).format('dddd')}`
+      });
+    }, error => {
+      this.messageService.add({ severity: 'error', summary: 'Oops', detail: `An error occurred, we didn't do what you wanted us to.` });
+    });
   }
 }

@@ -27,7 +27,7 @@
     </div>
     <div class="week-display">
       <div *ngFor="let dayOfWeek of week" class="week-day">
-        <dd-week-day [date]="dayOfWeek"></dd-week-day>
+        <dd-week-day [date]="dayOfWeek" (swap)="swapDay(dayOfWeek, $event)"></dd-week-day>
       </div>
     </div>
   </div>
