@@ -49,7 +49,6 @@ export class NotesComponent implements OnInit {
   public addNote() {
     if (this.newNoteText) {
       this.duckyNoteService.addNote(this.selectedCategory, this.newNoteText).subscribe(note => {
-        console.log('Added', note);
         this.notes.unshift(note);
       }, error => {
         this.messageService.add({ severity: 'error', summary: 'Oops', detail: `An error occurred, we didn't do what you wanted us to.` });

@@ -6,6 +6,8 @@ import { DuckyNoteModule } from '../core/ducky-note/ducky-note.module';
 import { DinnersComponent } from './dinners.component';
 import { MealInputComponent } from './meal-input/meal-input.component';
 import { WeekDayComponent } from './week-day/week-day.component';
+import { DateSwapDialogComponent } from './date-swap-dialog/date-swap-dialog.component';
+import { DateSwapDialogService } from './date-swap-dialog/date-swap-dialog.service';
 
 @NgModule({
   imports: [
@@ -13,8 +15,9 @@ import { WeekDayComponent } from './week-day/week-day.component';
     SharedModule,
     DuckyNoteModule,
   ],
-  declarations: [DinnersComponent, MealInputComponent, WeekDayComponent],
-  exports: [DinnersComponent]
+  declarations: [DinnersComponent, MealInputComponent, WeekDayComponent, DateSwapDialogComponent],
+  exports: [DinnersComponent],
+  providers: [DateSwapDialogService]
 })
 export class DinnersModule {
 

@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, Output, OnDestroy, OnInit, QueryList, ElementRef, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
+import * as moment from 'moment';
 import { Subscription } from 'rxjs/Subscription';
 
+import { FoodInputComponent } from '../../shared/components/food-input/food-input.component';
 import { DuckyMeal } from '../../core/ducky-note/ducky-meal.model';
 import { DuckyMealService } from '../../core/ducky-note/ducky-meal.service';
-import { FoodInputComponent } from '../../shared/components/food-input/food-input.component';
+import { DateSwapDialogService } from '../date-swap-dialog/date-swap-dialog.service';
 
 @Component({
   selector: 'dd-meal-input',
@@ -35,13 +37,78 @@ export class MealInputComponent implements OnInit, OnDestroy {
 
   private formChangeSubscription: Subscription;
   private saveMealSubscription: Subscription;
+  private refreshSubscription: Subscription;
 
   @ViewChildren('side') sideFoodInputComponents: QueryList<FoodInputComponent>;
 
-  constructor(private formBuilder: FormBuilder, private duckyMealService: DuckyMealService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private duckyMealService: DuckyMealService,
+    private dateSwapDialogService: DateSwapDialogService
+  ) { }
 
   ngOnInit() {
     this.mealForm = this.getMealFormGroup();
+    this.loadMeal();
+
+    // Watch for refresh requests.
+    this.refreshSubscription = this.dateSwapDialogService.$refresh.subscribe(date => {
+      if (moment(date).isSame(this.date)) {
+        this.loadMeal();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.formChangeSubscription) {
+      this.formChangeSubscription.unsubscribe();
+    }
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
+  }
+
+  public removeSide(index: number) {
+    this.sidesFormArray.removeAt(index);
+  }
+
+  public addSide() {
+    this.sidesFormArray.push(this.getSideFormGroup());
+    setTimeout(() => {
+      this.sideFoodInputComponents.last.focus();
+    });
+  }
+
+  public trackSides(index: number, side: any) {
+    return index;
+  }
+
+  public goToFirstSide() {
+    if (this.sideFoodInputComponents.length) {
+      this.sideFoodInputComponents.first.focus();
+    } else {
+      this.addSide();
+    }
+  }
+
+  public isLink(text: string) {
+    return text && (text.startsWith('http://') || text.startsWith('https://'));
+  }
+
+  private loadMeal() {
+    this.isLoaded = false;
+
+
+    // Unsub previous form change subscription.
+    if (this.formChangeSubscription) {
+      this.formChangeSubscription.unsubscribe();
+    }
+
+    // Remove any existing sides from the form.
+    const sides = this.sidesFormArray;
+    while (sides.length !== 0) {
+      sides.removeAt(0);
+    }
 
     this.duckyMealService.getMeal(this.date).finally(() => {
       const originalJSON = JSON.stringify(this.getMealWithoutEmptySides(this.mealForm.value));
@@ -85,39 +152,6 @@ export class MealInputComponent implements OnInit, OnDestroy {
     }, error => { // Not found;
       this.isLoaded = true;
     });
-  }
-
-  ngOnDestroy() {
-    if (this.formChangeSubscription) {
-      this.formChangeSubscription.unsubscribe();
-    }
-  }
-
-  public removeSide(index: number) {
-    this.sidesFormArray.removeAt(index);
-  }
-
-  public addSide() {
-    this.sidesFormArray.push(this.getSideFormGroup());
-    setTimeout(() => {
-      this.sideFoodInputComponents.last.focus();
-    });
-  }
-
-  public trackSides(index: number, side: any) {
-    return index;
-  }
-
-  public goToFirstSide() {
-    if (this.sideFoodInputComponents.length) {
-      this.sideFoodInputComponents.first.focus();
-    } else {
-      this.addSide();
-    }
-  }
-
-  public isLink(text: string) {
-    return text && (text.startsWith('http://') || text.startsWith('https://'));
   }
 
   private setSaved(isSaved: boolean) {

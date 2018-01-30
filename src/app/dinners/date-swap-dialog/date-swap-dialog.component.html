@@ -1,0 +1,58 @@
+<p-dialog [(visible)]="visible" [modal]="true" [dismissableMask]="true" (onHide)="onDialogHide()">
+  <p-header>
+    Copy Meal
+  </p-header>
+  <div class="dialog-content">
+    <fieldset disabled="disabled">
+      <div *ngIf="!isLoadingMeal && !!meal; else loading" class="copy-selector">
+        <div class="item">
+          <h2 style="font-weight: 300; margin-top: 0; margin-bottom: 0px">Source</h2>
+          <h2 style="margin-top: 0; margin-bottom: 10px; font-weight:400; font-size:.8em; ">{{meal.date | date:'EEEE - MM/dd/yy'}}</h2>
+          <div class="type-header">Dinner</div>
+          <dd-food-input [ngModel]="meal.dinner"></dd-food-input>
+          <div class="type-header" style="padding-top: 10px">Sides</div>
+          <ng-container *ngIf="meal.sides.length; else noSides">
+            <div *ngFor="let side of meal.sides; let i = index;" style="display: flex; margin-bottom: 5px; position: relative;">
+              <dd-food-input [ngModel]="side.side" style="flex: 1"></dd-food-input>
+            </div>
+          </ng-container>
+          <ng-template #noSides>
+            <div style="text-align: center; font-size: .9em;">No Sides</div>
+          </ng-template>
+        </div>
+        <div class="item text-center" style="flex: 1">
+          <p-calendar [(ngModel)]="targetDate" (ngModelChange)="onSwapDateChange()" [inline]="true"></p-calendar>
+        </div>
+        <div class="item" *ngIf="targetDate; else noTarget">
+          <ng-container *ngIf="targetMeal; else emptyTarget">
+            <h2 style="font-weight: 300; margin-top: 0; margin-bottom: 0px">Target</h2>
+            <h2 style="margin-top: 0; margin-bottom: 10px; font-weight:400; font-size:.8em; ">{{targetMeal.date | date:'EEEE - MM/dd/yy'}}</h2>
+            <div class="type-header">Dinner</div>
+            <dd-food-input [ngModel]="targetMeal.dinner"></dd-food-input>
+            <div class="type-header" style="padding-top: 10px">Sides</div>
+            <ng-container *ngIf="targetMeal.sides.length; else noSides">
+              <div *ngFor="let side of targetMeal.sides; let i = index;" style="display: flex; margin-bottom: 5px; position: relative;">
+                <dd-food-input [ngModel]="side.side" style="flex: 1"></dd-food-input>
+              </div>
+            </ng-container>
+            <ng-template #noSides>
+              <div style="text-align: center; font-size: .9em;">No Sides</div>
+            </ng-template>
+          </ng-container>
+        </div>
+        <ng-template #noTarget>
+          <div class="item" style="display: flex; justify-content:center; align-items:center">
+            <h2 style="font-weight:300">No Target Selected</h2>
+          </div>
+        </ng-template>
+      </div>
+    </fieldset>
+    <ng-template #loading>
+      <dd-spinner></dd-spinner>
+    </ng-template>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="fa-close" label="Cancel" (click)="cancel()"></button>
+    <button type="button" pButton icon="fa-check" label="Copy" [disabled]="!targetDate" (click)="copy()"></button>
+  </p-footer>
+</p-dialog>

@@ -4,6 +4,8 @@ import * as moment from 'moment';
 import { MenuItem } from 'primeng/primeng';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import { DateSwapDialogService } from '../date-swap-dialog/date-swap-dialog.service';
+
 @Component({
   selector: 'dd-week-day',
   templateUrl: './week-day.component.html',
@@ -19,7 +21,7 @@ export class WeekDayComponent implements OnInit, OnChanges {
 
   public swappableDays: MenuItem[] = [];
 
-  constructor() { }
+  constructor(private dateSwapDialogService: DateSwapDialogService) { }
 
   ngOnInit() {
     this.evaluateDate();
@@ -44,7 +46,7 @@ export class WeekDayComponent implements OnInit, OnChanges {
           command: () => this.swap.next(swappableDay.toDate()),
         });
       }
-      swappableDays.push({ label: 'Choose a Date', disabled: true, command: () => console.log('not implemented') });
+      swappableDays.push({ label: 'Copy to Date', command: () => this.dateSwapDialogService.swap(this.date) });
       this.swappableDays = swappableDays;
     }
   }

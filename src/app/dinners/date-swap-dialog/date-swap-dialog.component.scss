@@ -1,0 +1,32 @@
+:host ::ng-deep {
+    input:disabled {
+        width: 100%;
+        opacity: 1;
+    }
+
+    .dialog-content {
+        min-height: 550px;
+        min-width: 350px;
+
+        .copy-selector {
+            font-size: .9em;
+            display: flex;
+            flex-direction: column;
+
+            .item {
+                flex: 1;
+                max-width: 315px;
+            }
+        }
+    }
+
+    @media only screen and (min-width: 950px) {
+        .dialog-content {
+            min-width: 950px;
+            min-height:250px;
+            .copy-selector {
+                flex-direction: row
+            }
+        }
+    }
+}
