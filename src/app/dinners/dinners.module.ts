@@ -20,5 +20,4 @@ import { DateSwapDialogService } from './date-swap-dialog/date-swap-dialog.servi
   providers: [DateSwapDialogService]
 })
 export class DinnersModule {
-
 }

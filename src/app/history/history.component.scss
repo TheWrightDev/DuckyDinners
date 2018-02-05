@@ -1,0 +1,7 @@
+:host ::ng-deep {
+    .all-sides {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
