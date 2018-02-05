@@ -1,7 +1,7 @@
 import { Component, Input, Output, OnChanges, OnInit, EventEmitter } from '@angular/core';
 
 import * as moment from 'moment';
-import { MenuItem } from 'primeng/primeng';
+import { MenuItem } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { DateSwapDialogService } from '../date-swap-dialog/date-swap-dialog.service';

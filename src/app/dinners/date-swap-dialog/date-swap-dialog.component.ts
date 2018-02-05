@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DuckyMealService } from '../../core/ducky-note/ducky-meal.service';
 import { DateSwapDialogService } from './date-swap-dialog.service';
 import { DuckyMeal } from '../../core/ducky-note/ducky-meal.model';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem } from 'primeng/api';
 
 
 @Component({

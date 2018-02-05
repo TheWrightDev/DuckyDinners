@@ -2,7 +2,7 @@ import { Component, Input, OnInit, EventEmitter, ViewChild } from '@angular/core
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/primeng';
+import { MenuItem } from 'primeng/api';
 import { AppComponent } from '../../app.component';
 
 @Component({
