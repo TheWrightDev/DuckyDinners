@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { PanelModule } from 'primeng/panel';
 import { SidebarModule } from 'primeng/sidebar';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
@@ -41,6 +42,7 @@ import { FoodInputComponent } from './components/food-input/food-input.component
         MenuModule,
         PanelModule,
         SidebarModule,
+        ScrollPanelModule,
         SelectButtonModule,
         TableModule,
         TooltipModule,

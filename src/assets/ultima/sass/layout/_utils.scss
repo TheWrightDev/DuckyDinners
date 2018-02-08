@@ -159,6 +159,8 @@
 }
 
 .ui-g {
+    -ms-flex-wrap: wrap;
+    
     &.form-group {
         > div {
             padding: 1em;

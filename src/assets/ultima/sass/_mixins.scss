@@ -168,6 +168,12 @@
     overflow: hidden;
 }
 
+@mixin animation-duration($value) {
+     -webkit-animation-duration: $value;
+    -moz-animation-duration: $value;
+    animation-duration: $value;
+}
+
 @mixin animation($delay, $duration, $animation) {
     -webkit-animation-delay: $delay;
     -webkit-animation-duration: $duration;
@@ -198,4 +204,15 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+}
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
 }
