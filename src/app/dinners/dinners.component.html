@@ -6,11 +6,18 @@
   <dd-notes></dd-notes>
 </p-sidebar>
 
+<p-sidebar [(visible)]="isHistoryPanelVisible" blockScroll="true" position="right">
+  <div style="display: flex; align-items: center;">
+    <h1 style="font-weight:normal;">Previous Dinners</h1>
+  </div>
+  <dd-meal-history [shouldLoad]="isHistoryPanelVisible"></dd-meal-history>
+</p-sidebar>
+
 <div class="ui-g ui-fluid">
   <div class="ui-g-12">
     <div style="display: flex; justify-content:center;">
       <button pButton type="button" (click)="showNotes()" icon="ui-icon-edit" style="margin-right: auto"></button>
-      <div class="week-picker" style="margin-right: auto; display: flex">
+      <div class="week-picker" style="display: flex">
         <i class="material-icons clickable-icon" (click)="previousWeek()">arrow_backward</i>
         <div>
           Choose Date:
@@ -19,7 +26,7 @@
         </div>
         <i class="material-icons clickable-icon" (click)="nextWeek()">arrow_forward</i>
       </div>
-      <div style="width: 45px"></div>
+      <button pButton type="button" (click)="showHistory()" icon="ui-icon-list" style="margin-left: auto"></button>
     </div>
     <div class="week-date-range-display">
       <strong>{{mondayDisplayString}}</strong> to

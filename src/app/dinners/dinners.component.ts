@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 
 import { DuckyMealService } from '../core/ducky-note/ducky-meal.service';
 import { NotesComponent } from '../core/ducky-note/notes/notes.component';
+import { DinnerService } from './dinner.service';
 
 @Component({
   selector: 'dd-dinners',
@@ -20,10 +21,11 @@ export class DinnersComponent implements OnInit {
   public week: Date[] = [];
 
   public isNotesPanelVisible: boolean = false;
+  public isHistoryPanelVisible: boolean = false;
 
   @ViewChild(NotesComponent) private notesComponent: NotesComponent;
 
-  constructor(private messageService: MessageService, private duckyMealService: DuckyMealService) { }
+  constructor(private messageService: MessageService, private dinnerService: DinnerService, private duckyMealService: DuckyMealService) { }
 
   ngOnInit() {
     this.onWeekPickerDateChange();
@@ -34,9 +36,14 @@ export class DinnersComponent implements OnInit {
     this.notesComponent.focusInput();
   }
 
+  public showHistory() {
+    this.isHistoryPanelVisible = true;
+  }
+
   public onWeekPickerDateChange() {
     if (this.weekPickerDate) {
       this.startingDate = moment(this.weekPickerDate).startOf('isoWeek');
+      this.dinnerService.setStartingDate(this.startingDate.toDate());
       this.mondayDisplayString = this.startingDate.clone().format('MMMM Do');
       this.sundayDisplayString = this.startingDate.clone().add(6, 'days').format('MMMM Do');
       for (let index = 0; index <= 6; index++) {
