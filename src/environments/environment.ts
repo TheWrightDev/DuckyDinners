@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: `http://localhost:8004/`,
+  baseApiUrl: `http://api.domesticducky.life/`,
+  // baseApiUrl: `http://localhost:8004/`,
 };
